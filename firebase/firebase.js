@@ -29,6 +29,7 @@ const onAuthStateChange = (authDispatch) => {
 }
 
 module.exports = {
+    firebase: firebase.default,
     googleAuthProvider,
     database,
     onAuthStateChange
