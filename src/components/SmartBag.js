@@ -12,7 +12,9 @@ const SmartBag = () => {
         const unSubscribe = onAuthStateChange((uid) => {
             if (uid) {
                 authDispatch(login(uid))
-                history.push('/dashboard')
+                if (history.location.pathname === '/') {
+                    history.push('/dashboard')
+                }
             } else {
                 authDispatch(logout())
                 history.push('/')

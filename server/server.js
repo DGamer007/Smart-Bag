@@ -7,21 +7,32 @@ const port = process.env.PORT || 3000
 const publicDir = path.join(__dirname, '../public')
 
 app.use(express.static(publicDir))
-app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'))
 })
 
-app.post('/add-data', (req, res) => {
-    database.ref(`/users/${req.body.uid}/history/${req.body.date}/${req.body.pid}`).set({
+app.get('/userdata/:id', async (req, res) => {
+    database.ref(`/users/${req.params.id}/history`).once('value').then((snapshot) => {
+        let data = ''
+        snapshot.forEach((date) => {
+            date.forEach((product) => {
+                const { productName, category = '', subCategory = '' } = product.val()
+                data += (`${date.key},${product.key},${productName},${category},${subCategory} \n`)
+            })
+        })
+        res.status(200).send(data)
+    })
+})
+
+app.post('/add-data', async (req, res) => {
+    await database.ref(`/users/${req.body.uid}/history/${req.body.date}/${req.body.pid}`).set({
         productName: req.body.name,
         category: req.body.category,
-        subCategory: req.body.subcategory
-    }).then(() => {
-        console.log("Data Saved.")
-        res.sendFile(publicDir + '/index.html')
+        subCategory: req.body.subCategory
     })
+    res.status(200).send()
 })
 
 app.listen(port, () => {
