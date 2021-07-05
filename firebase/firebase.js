@@ -9,8 +9,8 @@ const firebaseConfig = {
     databaseURL: process.env.FIREBASE_DATABASE_URL,
     storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
     messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.APP_ID,
-    measurementId: process.env.MEASUREMENT_ID
+    appId: process.env.FIREBASE_APP_ID,
+    measurementId: process.env.FIREBASE_MEASUREMENT_ID
 }
 
 firebase.default.initializeApp(firebaseConfig)
@@ -29,7 +29,6 @@ const onAuthStateChange = (authDispatch) => {
 }
 
 module.exports = {
-    firebase,
     googleAuthProvider,
     database,
     onAuthStateChange
