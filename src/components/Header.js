@@ -1,0 +1,19 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { startLogout } from '../actions/auth'
+
+const Header = () => {
+    const signoutEventListener = () => {
+        startLogout()
+    }
+
+    return (
+        <div>
+            <h1>Smart Bag</h1>
+            <Link to='/add-data'>Add Data</Link>
+            <button onClick={signoutEventListener}>Logout</button>
+        </div>
+    )
+}
+
+export default Header
