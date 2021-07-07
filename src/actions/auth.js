@@ -14,17 +14,17 @@ export const logout = () => {
 }
 
 export const startLoginGA = () => {
-    firebase.auth().signInWithPopup(googleAuthProvider)
+    return firebase.auth().signInWithPopup(googleAuthProvider)
 }
 
 export const startLoginEP = (email, password) => {
-    firebase.auth().signInWithEmailAndPassword(email, password)
+    return firebase.auth().signInWithEmailAndPassword(email, password)
 }
 
 export const startSignupEP = (email, password) => {
-    firebase.auth().createUserWithEmailAndPassword(email, password)
+    return firebase.auth().createUserWithEmailAndPassword(email, password)
 }
 
 export const startLogout = () => {
-    firebase.auth().signOut()
+    return firebase.auth().signOut()
 }

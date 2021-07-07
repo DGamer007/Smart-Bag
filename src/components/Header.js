@@ -3,8 +3,12 @@ import { Link } from 'react-router-dom'
 import { startLogout } from '../actions/auth'
 
 const Header = () => {
-    const signoutEventListener = () => {
-        startLogout()
+    const signoutEventListener = async () => {
+        try {
+            await startLogout()
+        } catch (error) {
+            alert(error.message)
+        }
     }
 
     return (
