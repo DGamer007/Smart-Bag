@@ -7,6 +7,7 @@ import { addDataToDatabase } from '../../firebase/dataManipulation'
 const AddData = () => {
     const { auth } = useContext(SmartBagContext)
     const [pName, setPName] = useState('')
+    const [amount, setAmount] = useState()
     const [category, setCategory] = useState('')
     const [subCategory, setSubCategory] = useState('')
     const [date, setDate] = useState(moment().format("YYYY-MM-DD"))
@@ -24,6 +25,7 @@ const AddData = () => {
             uid: auth.uid,
             pid: uuid(),
             name: pName,
+            amount,
             category,
             subCategory,
             date
@@ -37,6 +39,7 @@ const AddData = () => {
             <h2>Add Data</h2>
             <form onSubmit={submitEventListener}>
                 <input type="text" placeholder="Product Name" value={pName} onChange={(e) => setPName(e.target.value)} />
+                <input type="number" placeholder="Amount" value={amount} onChange={(e) => { setAmount(e.target.value) }} />
                 <input type="text" placeholder="Product Category" value={category} onChange={(e) => setCategory(e.target.value)} />
                 <input type="text" placeholder="Product Sub-Category" value={subCategory} onChange={(e) => setSubCategory(e.target.value)} />
                 <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />

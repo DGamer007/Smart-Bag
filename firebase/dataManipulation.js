@@ -1,10 +1,11 @@
 const { database } = require('./firebase')
 
-const addDataToDatabase = ({ uid, pid, category, name, date, subCategory }) => {
+const addDataToDatabase = ({ uid, pid, category, name, date, subCategory, amount }) => {
     database.ref(`/users/${uid}/history/${date}/${pid}`).set({
         productName: name,
         category: category,
-        subCategory: subCategory
+        subCategory: subCategory,
+        amount
     }).then(() => {
         console.log('Data Saved Successfully.')
     }).catch((error) => {
