@@ -7,6 +7,7 @@ import PageNotFound from '../components/PageNotFound'
 import Dashboard from '../components/Dashboard'
 import LoginPage from '../components/LoginPage'
 import AddData from '../components/AddData'
+import Bag from '../components/Bag'
 
 export const history = createBrowserHistory()
 
@@ -16,6 +17,7 @@ const AppRouter = () => {
             <Switch>
                 <PublicRoute path="/" exact={true} component={LoginPage} />
                 <PrivateRoute path="/dashboard" component={Dashboard} />
+                <PrivateRoute path="/mybag" component={Bag} />
                 <PrivateRoute path="/add-data" component={AddData} />
                 <Route component={PageNotFound} />
             </Switch>

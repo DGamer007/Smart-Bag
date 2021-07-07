@@ -10,6 +10,7 @@ const Header = () => {
     return (
         <div>
             <h1>Smart Bag</h1>
+            <Link to='/mybag'>My Bag</Link>
             <Link to='/add-data'>Add Data</Link>
             <button onClick={signoutEventListener}>Logout</button>
         </div>
