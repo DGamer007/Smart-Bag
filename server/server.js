@@ -10,7 +10,7 @@ app.use(express.static(publicDir))
 app.use(express.json())
 
 app.get('/userdata/:id', async (req, res) => {
-    const data = fetchNecessaryData(req.params.id)
+    const data = await fetchNecessaryData(req.params.id)
     res.send(data)
 })
 

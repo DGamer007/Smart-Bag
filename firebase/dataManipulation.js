@@ -12,21 +12,23 @@ const addDataToDatabase = ({ uid, pid, category, name, date, subCategory }) => {
     })
 }
 
-const fetchNecessaryData = (uid) => {
-    database
-        .ref(`/users/${uid}/history`)
-        .once('value')
-        .then((snapshot) => {
-            let data = ''
-            snapshot.forEach((date) => {
-                date.forEach((product) => {
-                    const { productName, category = '', subCategory = '' } = product.val()
+const fetchNecessaryData = async (uid) => {
+    return new Promise((resolve, reject) => {
+        database
+            .ref(`/users/${uid}/history`)
+            .once('value')
+            .then((snapshot) => {
+                let data = ''
+                snapshot.forEach((date) => {
+                    date.forEach((product) => {
+                        const { productName, category = '', subCategory = '' } = product.val()
 
-                    data += (`${date.key},${product.key},${productName},${category},${subCategory} \n`)
+                        data += (`${date.key},${product.key},${productName},${category},${subCategory} \n`)
+                    })
                 })
+                resolve(data)
             })
-            return data
-        })
+    })
 }
 
 module.exports = {
