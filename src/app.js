@@ -4,12 +4,9 @@ import 'regenerator-runtime/runtime'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createBrowserHistory } from 'history'
 
 import SmartBag from './components/SmartBag'
 
 import './styles/styles.scss'
-
-const history = createBrowserHistory()
 
 ReactDOM.render(<SmartBag />, document.getElementById('root'))
