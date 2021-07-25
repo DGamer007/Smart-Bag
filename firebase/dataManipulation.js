@@ -22,9 +22,9 @@ const fetchNecessaryData = async (uid) => {
                 let data = ''
                 snapshot.forEach((date) => {
                     date.forEach((product) => {
-                        const { productName, category = '', subCategory = '' } = product.val()
+                        const { productName, category = '', subCategory = '', amount = 0 } = product.val()
 
-                        data += (`${date.key},${product.key},${productName},${category},${subCategory} \n`)
+                        data += `${date.key},${product.key},${productName},${amount},${category},${subCategory} \n`
                     })
                 })
                 resolve(data)
