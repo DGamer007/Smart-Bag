@@ -11,7 +11,7 @@ const Dashboard = () => {
             method: 'GET',
             headers: { "Accept": "application/json" }
         }
-        const res = await fetch('http://localhost:3000/defaultData', reqObject)
+        const res = await fetch('/defaultData', reqObject)
         const data = await res.json()
 
         setDefaults(data)
