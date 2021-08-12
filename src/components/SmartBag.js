@@ -2,7 +2,7 @@ import React, { useEffect, useReducer } from 'react'
 import authReducer from '../reducers/auth'
 import { onAuthStateChange } from '../../firebase/firebase.js'
 import { login, logout } from '../actions/auth'
-import SmartBagContext from '../context/SmartBagContext'
+import {authContext as AuthContext} from '../context/smartBagContext'
 import AppRouter, { history } from '../routers/AppRouter'
 
 const SmartBag = () => {
@@ -27,9 +27,9 @@ const SmartBag = () => {
     }, [])
 
     return (
-        <SmartBagContext.Provider value={{ auth, authDispatch }}>
+        <AuthContext.Provider value={{ auth, authDispatch }}>
             <AppRouter />
-        </SmartBagContext.Provider>
+        </AuthContext.Provider>
     )
 }
 

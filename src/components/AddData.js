@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react'
 import moment from 'moment'
 import uuid from 'uuid'
-import SmartBagContext from '../context/SmartBagContext'
+import {authContext} from '../context/smartBagContext'
 import { addDataToDatabase } from '../../firebase/dataManipulation'
 
 const AddData = () => {
-    const { auth } = useContext(SmartBagContext)
+    const { auth } = useContext(authContext)
     const [pName, setPName] = useState('')
     const [amount, setAmount] = useState()
     const [category, setCategory] = useState('')

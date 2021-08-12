@@ -1,5 +1,5 @@
 import { createContext } from 'react'
 
-const SmartBagContext = createContext({})
+export const authContext = createContext({})
 
-export default SmartBagContext
+export const cartContext = createContext()
