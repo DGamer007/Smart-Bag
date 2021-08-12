@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import moment from 'moment'
 import uuid from 'uuid'
-import {authContext} from '../context/smartBagContext'
+import { authContext } from '../context/smartBagContext'
 import { addDataToDatabase } from '../../firebase/dataManipulation'
 
 const AddData = () => {

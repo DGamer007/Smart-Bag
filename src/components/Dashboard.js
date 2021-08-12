@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { cartContext } from '../context/smartBagContext'
+import React, { useEffect, useState } from 'react'
 import Product from './Product'
 
 const Dashboard = () => {
