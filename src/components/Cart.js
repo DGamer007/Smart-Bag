@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { cartContext } from '../context/smartBagContext'
+import { cartContext } from '../context/appContext'
 import CartProduct from './CartProduct'
 
 const Cart = () => {

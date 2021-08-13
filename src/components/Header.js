@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { startLogout } from '../actions/auth'
-import { cartContext } from '../context/smartBagContext'
+import { cartContext } from '../context/appContext'
 
 const Header = () => {
     const signoutEventListener = async () => {

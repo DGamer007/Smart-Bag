@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useReducer } from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import { authContext, cartContext as CartContext } from '../context/smartBagContext'
+import { authContext, cartContext as CartContext } from '../context/appContext'
 import cartReducer from '../reducers/cart'
 import Header from '../components/Header'
 

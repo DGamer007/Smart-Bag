@@ -2,7 +2,7 @@ import React, { useEffect, useReducer } from 'react'
 import authReducer from '../reducers/auth'
 import { onAuthStateChange } from '../../firebase/firebase.js'
 import { login, logout } from '../actions/auth'
-import { authContext as AuthContext } from '../context/smartBagContext'
+import { authContext as AuthContext } from '../context/appContext'
 import AppRouter, { history } from '../routers/AppRouter'
 
 const SmartBag = () => {

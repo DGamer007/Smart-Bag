@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import {authContext} from '../context/smartBagContext'
+import { authContext } from '../context/appContext'
 
 const PublicRoute = ({ component: Component, ...rest }) => {
 
