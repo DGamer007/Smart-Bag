@@ -10,6 +10,7 @@
   "scripts": {
     "start": "node server/server.js",
     "start:dev": "env-cmd -f ./.env.development node server/server.js",
+    "database":"env-cmd -f ./.env.development node firebase/insertData.js",
     "dev": "webpack serve --config webpack.dev.js",
     "build:dev": "webpack --config webpack.dev.js",
     "build:prod": "webpack --config webpack.prod.js",

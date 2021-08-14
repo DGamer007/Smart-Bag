@@ -1,3 +1,4 @@
+const moment = require('moment')
 const { database } = require('./firebase')
 
 const addDataToDatabase = ({ uid, pid, category, name, date, subCategory, amount }) => {
@@ -14,21 +15,36 @@ const addDataToDatabase = ({ uid, pid, category, name, date, subCategory, amount
 }
 
 const fetchNecessaryData = async (uid) => {
-    return new Promise((resolve, reject) => {
-        database
-            .ref(`/users/${uid}/history`)
-            .once('value')
-            .then((snapshot) => {
-                let data = ''
-                snapshot.forEach((date) => {
-                    date.forEach((product) => {
-                        const { productName, category = '', subCategory = '', amount = 0 } = product.val()
+    return new Promise(async (resolve, reject) => {
+        const snapshot = await database.ref(`/users/${uid}/history`).once('value')
+        const rawData = snapshot.val()
 
-                        data += `${date.key},${product.key},${productName},${amount},${category},${subCategory} \n`
-                    })
-                })
-                resolve(data)
+        const sortedObject = Object.keys(rawData)
+            .sort((a, b) => {
+                if (moment(a).isAfter(b)) return -1
+                return 1
             })
+            .reduce((obj, key) => {
+                obj[key] = rawData[key]
+                return obj
+            }, {})
+
+
+        const initDate = Object.keys(sortedObject)[0]
+
+        let data = ''
+
+        for (let date in sortedObject) {
+            if ((moment(date, 'YYYY-MM-DD').diff(moment(initDate, 'YYYY-MM-DD'), 'month')) * (-1) > 6) break
+
+            for (let product in sortedObject[date]) {
+                const { productName, category = '', subCategory = '', amount = 0 } = sortedObject[date][product]
+
+                data += `${date},${product},${productName},${amount},${category},${subCategory}\n`
+            }
+        }
+
+        resolve(data)
     })
 }
 

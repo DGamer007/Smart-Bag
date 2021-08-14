@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { authContext } from '../context/appContext'
 import Product from './Product'
 
 const Bag = () => {
-
     const [items, setItems] = useState([])
+    const { auth } = useContext(authContext)
 
     useEffect(async () => {
-        const res = await fetch(`https://smart-bag-001.herokuapp.com/smart_bag/DMmUhoDqN0NRcUAHymUtvybHAk62`)
+        const res = await fetch(`https://smart-bag-001.herokuapp.com/smart_bag/${auth.uid}`)
         const data = await res.json()
         setItems(data)
     }, [])
