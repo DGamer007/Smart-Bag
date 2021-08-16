@@ -40,7 +40,7 @@ const fetchNecessaryData = async (uid) => {
             for (let product in sortedObject[date]) {
                 const { productName, category = '', subCategory = '', amount = 0 } = sortedObject[date][product]
 
-                data += `${date},${product},${productName},${amount},${category},${subCategory}\n`
+                data += `"${date}","${product}","${productName}","${amount}","${category}","${subCategory}"\n`
             }
         }
 
