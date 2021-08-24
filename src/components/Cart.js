@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import Product from './Product'
 import { database } from '../../firebase/firebase'
 import { emptyCart } from '../actions/cart'
+import moment from 'moment'
+import { history } from '../routers/AppRouter'
 
 const Cart = ({ cart, auth, emptyCart }) => {
 
@@ -13,8 +15,22 @@ const Cart = ({ cart, auth, emptyCart }) => {
     }, [cart])
 
     const buyNowListener = async () => {
+        const date = moment().format('YYYY-MM-DD')
+        const data = cart.items
+
+        for (let i in data) {
+            await database.ref(`/users/${auth.uid}/history/${date}/${data[i].id}`).set({
+                productName: data[i].productName,
+                amount: data[i].amount,
+                category: data[i].category,
+                subCategory: data[i].subCategory
+            })
+        }
+
+        alert(`${cart.count} item${cart.count !== 1 ? 's have' : ' has'} been purchased !`)
 
         emptyCart()
+        history.push('/dashboard')
     }
 
     return (
@@ -54,4 +70,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps)(Cart)
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)

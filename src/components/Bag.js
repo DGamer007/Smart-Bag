@@ -16,9 +16,12 @@ const Bag = ({ auth }) => {
     return (
         <div>
             <h1>Products</h1>
-            {products.map((product) => {
-                return <Product key={product.pid} product={product} isCart={false} />
-            })}
+            {
+                // Change product_id label when Smit push next time !
+                products.map((product) => {
+                    return <Product key={product.product_id} product={{ id: product.product_id, ...product }} isCart={false} />
+                })
+            }
         </div>
     )
 }

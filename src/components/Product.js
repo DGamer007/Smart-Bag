@@ -6,7 +6,7 @@ const Product = ({ product, isCart, removeProduct, addProduct }) => {
 
     return (
         <div>
-            <h3>{product.name}</h3>
+            <h3>{product.productName}</h3>
             <p>Amount: {product.amount}</p>
             {
                 isCart ? (<button onClick={() => { removeProduct(product.id) }}>Remove</button>) : (<button onClick={() => { addProduct(product) }}>Add to Cart</button>)
