@@ -51,9 +51,9 @@ const LoginPage = ({ startLoginEP, startLoginGA, startSignupEP }) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        startLoginEP: (email, pass) => { dispatch(startLoginEP()) },
+        startLoginEP: (email, password) => { dispatch(startLoginEP(email, password)) },
         startLoginGA: () => { dispatch(startLoginGA()) },
-        startSignupEP: (email, pass) => { dispatch(startSignupEP(email, pass)) }
+        startSignupEP: (email, password) => { dispatch(startSignupEP(email, password)) }
     }
 }
 

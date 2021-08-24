@@ -45,13 +45,7 @@ const Cart = ({ cart, auth, emptyCart }) => {
                 })
             }
             {
-                (() => {
-                    if (products.length !== 0) {
-                        return (
-                            <button onClick={buyNowListener}>Buy now</button>
-                        )
-                    }
-                })()
+                products.length !== 0 && (<button onClick={buyNowListener}>Buy now</button>)
             }
         </div>
     )
