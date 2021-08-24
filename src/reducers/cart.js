@@ -45,6 +45,9 @@ const cartReducer = (state = initState, action) => {
                 items: new_items
             }
 
+        case 'EMPTY_CART':
+            return initState
+
         default:
             return state
     }

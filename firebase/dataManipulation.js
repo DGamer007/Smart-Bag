@@ -17,7 +17,7 @@ const addDataToDatabase = ({ uid, pid, category, name, date, subCategory, amount
 const fetchNecessaryDataPythonAPI = async (uid) => {
     return new Promise(async (resolve, reject) => {
         const snapshot = await database.ref(`/users/${uid}/history`).once('value')
-        const rawData = snapshot.val()
+        const rawData = await snapshot.val()
 
         const sortedObject = Object.keys(rawData)
             .sort((a, b) => {

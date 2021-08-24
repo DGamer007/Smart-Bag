@@ -14,7 +14,9 @@ const Dashboard = () => {
             tempArray.push({
                 id: product,
                 amount: data[product]['amount'],
-                productName: data[product]['productName']
+                productName: data[product]['productName'],
+                category: data[product]['category'],
+                subCategory: data[product]['subCategory']
             })
         }
         return tempArray
@@ -55,7 +57,7 @@ const Dashboard = () => {
             <h2>Dashboard</h2>
             {
                 defaults.map(product => {
-                    return (<Product key={product.id} product={{ id: product.id, amount: product.amount, name: product.productName }} />)
+                    return (<Product key={product.id} product={product} isCart={false} />)
                 }
                 )}
             <button onClick={nextButtonListener} >Next</button>
