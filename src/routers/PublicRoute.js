@@ -1,10 +1,8 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import { authContext } from '../context/appContext'
+import { connect } from 'react-redux'
 
-const PublicRoute = ({ component: Component, ...rest }) => {
-
-    const { auth } = useContext(authContext)
+const PublicRoute = ({ auth, component: Component, ...rest }) => {
 
     return (
         <Route {...rest} component={(props) => {
@@ -19,4 +17,10 @@ const PublicRoute = ({ component: Component, ...rest }) => {
     )
 }
 
-export default PublicRoute
+const mapStateToProps = (state) => {
+    return {
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps)(PublicRoute)

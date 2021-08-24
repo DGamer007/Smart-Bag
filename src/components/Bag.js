@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { authContext } from '../context/appContext'
+import React, { useEffect, useState } from 'react'
 import Product from './Product'
+import { connect } from 'react-redux'
 
-const Bag = () => {
+const Bag = ({ auth }) => {
     const [items, setItems] = useState([])
-    const { auth } = useContext(authContext)
 
     useEffect(() => {
         (async () => {
@@ -24,4 +23,10 @@ const Bag = () => {
     )
 }
 
-export default Bag
+const mapStateToProps = (state) => {
+    return {
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps)(Bag)

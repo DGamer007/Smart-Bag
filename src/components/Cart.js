@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { cartContext } from '../context/appContext'
+import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
 import Product from './Product'
 
-const Cart = () => {
+const Cart = ({ cart }) => {
 
     const [products, setProducts] = useState([])
-    const { cart } = useContext(cartContext)
 
     useEffect(() => {
         setProducts(cart.items)
@@ -22,4 +21,10 @@ const Cart = () => {
     )
 }
 
-export default Cart
+const mapStateToProps = (state) => {
+    return {
+        cart: state.cart
+    }
+}
+
+export default connect(mapStateToProps)(Cart)

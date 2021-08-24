@@ -1,21 +1,25 @@
-import React, { useContext, useEffect } from 'react'
-import { cartContext } from '../context/appContext'
+import React from 'react'
 import { addProduct, removeProduct } from '../actions/cart'
+import { connect } from 'react-redux'
 
-const Product = ({ product, isCart }) => {
-
-    const { cartDispatch } = useContext(cartContext)
+const Product = ({ product, isCart, removeProduct, addProduct }) => {
 
     return (
         <div>
             <h3>{product.name}</h3>
             <p>Amount: {product.amount}</p>
             {
-                isCart ?
-                    (<button onClick={() => { cartDispatch(removeProduct(product.id)) }}>Remove</button>) : (<button onClick={() => { cartDispatch(addProduct(product)) }}>Add to Cart</button>)
+                isCart ? (<button onClick={() => { removeProduct(product.id) }}>Remove</button>) : (<button onClick={() => { addProduct(product) }}>Add to Cart</button>)
             }
         </div>
     )
 }
 
-export default Product
+const mapDispatchToProps = (dispatch) => {
+    return {
+        removeProduct: (id) => { dispatch(removeProduct(id)) },
+        addProduct: (product) => { dispatch(addProduct(product)) }
+    }
+}
+
+export default connect(undefined, mapDispatchToProps)(Product)

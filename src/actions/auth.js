@@ -14,17 +14,26 @@ export const logout = () => {
 }
 
 export const startLoginGA = () => {
-    return firebase.auth().signInWithPopup(googleAuthProvider)
+    return () => {
+        return firebase.auth().signInWithPopup(googleAuthProvider)
+    }
 }
 
 export const startLoginEP = (email, password) => {
-    return firebase.auth().signInWithEmailAndPassword(email, password)
+    return () => {
+        return firebase.auth().signInWithEmailAndPassword(email, password)
+    }
+
 }
 
 export const startSignupEP = (email, password) => {
-    return firebase.auth().createUserWithEmailAndPassword(email, password)
+    return () => {
+        return firebase.auth().createUserWithEmailAndPassword(email, password)
+    }
 }
 
 export const startLogout = () => {
-    return firebase.auth().signOut()
+    return () => {
+        return firebase.auth().signOut()
+    }
 }

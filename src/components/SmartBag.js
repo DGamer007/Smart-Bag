@@ -1,22 +1,22 @@
-import React, { useEffect, useReducer } from 'react'
-import authReducer from '../reducers/auth'
+import React, { useEffect } from 'react'
 import { onAuthStateChange } from '../../firebase/firebase.js'
 import { login, logout } from '../actions/auth'
-import { authContext as AuthContext } from '../context/appContext'
 import AppRouter, { history } from '../routers/AppRouter'
+import configureStore from '../store/configureStore'
+import { Provider } from 'react-redux'
 
 const SmartBag = () => {
-    const [auth, authDispatch] = useReducer(authReducer, {})
+    const store = configureStore()
 
     useEffect(() => {
         const unSubscribe = onAuthStateChange((uid) => {
             if (uid) {
-                authDispatch(login(uid))
+                store.dispatch(login(uid))
                 if (history.location.pathname === '/') {
                     history.push('/dashboard')
                 }
             } else {
-                authDispatch(logout())
+                store.dispatch(logout())
                 history.push('/')
             }
         })
@@ -27,9 +27,9 @@ const SmartBag = () => {
     }, [])
 
     return (
-        <AuthContext.Provider value={{ auth, authDispatch }}>
+        <Provider store={store}>
             <AppRouter />
-        </AuthContext.Provider>
+        </Provider>
     )
 }
 

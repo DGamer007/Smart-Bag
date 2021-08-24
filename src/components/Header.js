@@ -1,18 +1,9 @@
-import React, { useContext } from 'react'
+import React from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { startLogout } from '../actions/auth'
-import { cartContext } from '../context/appContext'
 
-const Header = () => {
-    const signoutEventListener = async () => {
-        try {
-            await startLogout()
-        } catch (error) {
-            alert(error.message)
-        }
-    }
-
-    const { cart } = useContext(cartContext)
+const Header = ({ cart, startLogout }) => {
 
     return (
         <div>
@@ -21,9 +12,21 @@ const Header = () => {
             <Link to='/dashboard'>Dashboard</Link>
             <Link to='/mybag'>My Bag</Link>
             <Link to='/add-data'>Add Data</Link>
-            <button onClick={signoutEventListener}>Logout</button>
+            <button onClick={startLogout}>Logout</button>
         </div>
     )
 }
 
-export default Header
+const mapStateToProps = (state) => {
+    return {
+        cart: state.cart
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        startLogout: () => { dispatch(startLogout()) }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

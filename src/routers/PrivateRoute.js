@@ -1,22 +1,17 @@
-import React, { useContext, useEffect, useReducer } from 'react'
+import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import { authContext, cartContext as CartContext } from '../context/appContext'
-import cartReducer from '../reducers/cart'
 import Header from '../components/Header'
+import { connect } from 'react-redux'
 
-
-const PrivateRoute = ({ component: Component, ...rest }) => {
-    const { auth } = useContext(authContext)
-
-    const [cart, cartDispatch] = useReducer(cartReducer, { count: 0, items: [] })
+const PrivateRoute = ({ auth, component: Component, ...rest }) => {
 
     return (
         <Route {...rest} component={(props) => {
             return auth.uid ? (
-                <CartContext.Provider value={{ cart, cartDispatch }}>
+                <div>
                     <Header />
                     <Component {...props} />
-                </CartContext.Provider>
+                </div>
             ) : (
                 <Redirect to="/" />
             )
@@ -24,4 +19,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     )
 }
 
-export default PrivateRoute
+const mapStateToProps = (state) => {
+    return {
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps)(PrivateRoute)

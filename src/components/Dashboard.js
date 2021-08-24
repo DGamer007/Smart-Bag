@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Product from './Product'
 import { database } from '../../firebase/firebase'
 
@@ -20,7 +20,7 @@ const Dashboard = () => {
         return tempArray
     }
 
-    const setKeys = (data)=>{
+    const setKeys = (data) => {
         const keys = Object.keys(data)
 
         setFirstKey(keys[0])
@@ -44,7 +44,7 @@ const Dashboard = () => {
     useEffect(() => {
         (async () => {
             const firstPage = await (await database.ref('/system').orderByKey().limitToFirst(10).once('value')).val()
-    
+
             setKeys(firstPage)
             setDefaults(convertToArray(firstPage))
         })()
@@ -55,9 +55,9 @@ const Dashboard = () => {
             <h2>Dashboard</h2>
             {
                 defaults.map(product => {
-                return (<Product key={product.id} product={{ id: product.id, amount: product.amount, name: product.productName }} />)
-            }
-            )}
+                    return (<Product key={product.id} product={{ id: product.id, amount: product.amount, name: product.productName }} />)
+                }
+                )}
             <button onClick={nextButtonListener} >Next</button>
             <button onClick={previousButtonListener}>Previous</button>
         </div>

@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
 import { startLoginEP, startLoginGA, startSignupEP } from '../actions/auth'
 
-const LoginPage = () => {
+const LoginPage = ({ startLoginEP, startLoginGA, startSignupEP }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -10,27 +11,27 @@ const LoginPage = () => {
         setPassword('')
     }
 
-    const signupEventListener = async () => {
+    const signupEventListener = () => {
         try {
-            await startSignupEP(email, password)
+            startSignupEP(email, password)
         } catch (error) {
             alert(error.message)
             resetForm()
         }
     }
 
-    const loginGAEventListener = async () => {
+    const loginGAEventListener = () => {
         try {
-            await startLoginGA()
+            startLoginGA()
         } catch (error) {
             alert(error.message)
             resetForm()
         }
     }
 
-    const loginEPEventListener = async () => {
+    const loginEPEventListener = () => {
         try {
-            await startLoginEP(email, password)
+            startLoginEP(email, password)
         } catch (error) {
             alert(error.message)
             resetForm()
@@ -48,4 +49,12 @@ const LoginPage = () => {
     )
 }
 
-export default LoginPage
+const mapDispatchToProps = (dispatch) => {
+    return {
+        startLoginEP: (email, pass) => { dispatch(startLoginEP()) },
+        startLoginGA: () => { dispatch(startLoginGA()) },
+        startSignupEP: (email, pass) => { dispatch(startSignupEP(email, pass)) }
+    }
+}
+
+export default connect(undefined, mapDispatchToProps)(LoginPage)

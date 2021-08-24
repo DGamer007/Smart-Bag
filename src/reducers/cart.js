@@ -1,4 +1,9 @@
-const cartReducer = (state, action) => {
+const initState = {
+    count: 0,
+    items: []
+}
+
+const cartReducer = (state = initState, action) => {
     let new_items = []
     switch (action.type) {
         case 'ADD_PRODUCT':

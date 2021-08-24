@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
 import moment from 'moment'
 import uuid from 'uuid'
-import { authContext } from '../context/appContext'
 import { addDataToDatabase } from '../../firebase/dataManipulation'
 
-const AddData = () => {
-    const { auth } = useContext(authContext)
+const AddData = ({ auth }) => {
+
     const [pName, setPName] = useState('')
     const [amount, setAmount] = useState()
     const [category, setCategory] = useState('')
@@ -49,4 +49,10 @@ const AddData = () => {
     )
 }
 
-export default AddData
+const mapStateToProps = (state) => {
+    return {
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps)(AddData)
