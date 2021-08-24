@@ -14,7 +14,7 @@ const addDataToDatabase = ({ uid, pid, category, name, date, subCategory, amount
     })
 }
 
-const fetchNecessaryData = async (uid) => {
+const fetchNecessaryDataPythonAPI = async (uid) => {
     return new Promise(async (resolve, reject) => {
         const snapshot = await database.ref(`/users/${uid}/history`).once('value')
         const rawData = snapshot.val()
@@ -50,5 +50,5 @@ const fetchNecessaryData = async (uid) => {
 
 module.exports = {
     addDataToDatabase,
-    fetchNecessaryData
+    fetchNecessaryDataPythonAPI
 }

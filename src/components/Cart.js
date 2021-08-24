@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { cartContext } from '../context/appContext'
-import CartProduct from './CartProduct'
+import Product from './Product'
 
 const Cart = () => {
 
@@ -15,7 +15,7 @@ const Cart = () => {
         <div>
             {products.map(product => {
                 return (
-                    <CartProduct key={product.pid} product={{ id: product.pid, name: product.productName, amount: product.amount }} />
+                    <Product key={product.id} product={{ id: product.id, name: product.productName, amount: product.amount }} isCart={true} />
                 )
             })}
         </div>

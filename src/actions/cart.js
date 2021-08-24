@@ -2,7 +2,7 @@ export const addProduct = ({ id, name, amount }) => {
     return {
         type: 'ADD_PRODUCT',
         product: {
-            pid: id,
+            id,
             amount,
             productName: name
         }

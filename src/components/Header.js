@@ -12,7 +12,7 @@ const Header = () => {
         }
     }
 
-    const { cart, cartDispatch } = useContext(cartContext)
+    const { cart } = useContext(cartContext)
 
     return (
         <div>

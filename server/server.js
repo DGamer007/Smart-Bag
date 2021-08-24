@@ -2,7 +2,7 @@ const express = require('express')
 const { readFileSync } = require('fs')
 const path = require('path')
 const cors = require('cors')
-const { fetchNecessaryData } = require('../firebase/dataManipulation')
+const { fetchNecessaryDataPythonAPI } = require('../firebase/dataManipulation')
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -13,19 +13,8 @@ app.use(express.json())
 app.use(cors())
 
 app.get('/userdata/:id', async (req, res) => {
-    const data = await fetchNecessaryData(req.params.id)
+    const data = await fetchNecessaryDataPythonAPI(req.params.id)
     res.send(data)
-})
-
-app.get('/defaultData', (req, res) => {
-    try {
-        const data = JSON.parse(readFileSync(path.join(__dirname, 'defaultProducts.json')).toString())
-        res.status(200).send(data)
-    }
-    catch (e) {
-        console.log(e)
-        res.status(400).send(e)
-    }
 })
 
 app.get('*', (req, res) => {
