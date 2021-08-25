@@ -17,6 +17,7 @@ const AddData = ({ auth }) => {
         setCategory('')
         setSubCategory('')
         setDate(moment().format("YYYY-MM-DD"))
+        setAmount()
     }
 
     const submitEventListener = (e) => {
@@ -39,7 +40,7 @@ const AddData = ({ auth }) => {
             <h2>Add Data</h2>
             <form onSubmit={submitEventListener}>
                 <input type="text" placeholder="Product Name" value={pName} onChange={(e) => setPName(e.target.value)} />
-                <input type="number" placeholder="Amount" value={amount} onChange={(e) => { setAmount(e.target.value) }} />
+                <input type="number" placeholder="Amount" value={amount} onChange={(e) => setAmount(e.target.value)} />
                 <input type="text" placeholder="Product Category" value={category} onChange={(e) => setCategory(e.target.value)} />
                 <input type="text" placeholder="Product Sub-Category" value={subCategory} onChange={(e) => setSubCategory(e.target.value)} />
                 <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />

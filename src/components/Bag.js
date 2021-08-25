@@ -22,7 +22,6 @@ const Bag = ({ auth }) => {
         <div>
             <h1>Products</h1>
             {
-                // Change product_id label when Smit push next time !
                 signal ? products.map((product) => {
                     return <Product key={product.id} product={product} isCart={false} />
                 }) : (<p>There is not enought data in your purchase history.</p>)
