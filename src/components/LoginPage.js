@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { startLoginEP, startLoginGA, startSignupEP } from '../actions/auth'
 
@@ -38,13 +38,19 @@ const LoginPage = ({ startLoginEP, startLoginGA, startSignupEP }) => {
         }
     }
 
+    useEffect(() => {
+        document.title = 'Smart Bag | Login';
+    }, [])
+
     return (
-        <div>
-            <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            <button type="submit" onClick={loginEPEventListener}>Login</button>
-            <button type="submit" onClick={signupEventListener}>Signup</button>
-            <button onClick={loginGAEventListener}>Login with Google Account</button>
+        <div className="login">
+            <div className="login__container">
+                <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <button type="submit" onClick={loginEPEventListener}>Login</button>
+                <button type="submit" onClick={signupEventListener}>Signup</button>
+                <button onClick={loginGAEventListener}>Login with Google Account</button>
+            </div>
         </div>
     )
 }

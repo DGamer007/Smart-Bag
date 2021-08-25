@@ -7,6 +7,7 @@ const Bag = ({ auth }) => {
     const [signal, setSignal] = useState(true)
 
     useEffect(() => {
+        document.title = 'Smart Bag | My Bag';
         (async () => {
             const res = await fetch(`https://smart-bag-001.herokuapp.com/smart_bag/${auth.uid}`)
             if (res.status === 204) {
@@ -15,17 +16,34 @@ const Bag = ({ auth }) => {
             }
             const data = await res.json()
             setProducts(data)
+            console.log(data)
         })()
     }, [])
 
     return (
-        <div>
-            <h1>Products</h1>
-            {
-                signal ? products.map((product) => {
-                    return <Product key={product.id} product={product} isCart={false} />
-                }) : (<p>There is not enought data in your purchase history.</p>)
-            }
+        <div className="bag">
+            <div className="bag__container">
+                <div className="bag__title">
+                    <h3>Products</h3>
+                </div>
+                <div className="bag__product__list">
+                    {
+                        signal ? (
+                            <div className="product__list">
+                                {
+                                    products.map((product) => {
+                                        return (<Product key={product.id} product={product} isCart={false} />)
+                                    })
+                                }
+                            </div>
+                        ) : (
+                            <div className="bag__no__product">
+                                <p>There is not enought data in your purchase history.</p>
+                            </div>
+                        )
+                    }
+                </div>
+            </div>
         </div>
     )
 }

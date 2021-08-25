@@ -1,18 +1,29 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { startLogout } from '../actions/auth'
+import { history } from '../routers/AppRouter'
 
 const Header = ({ cart, startLogout }) => {
 
     return (
-        <div>
-            <h1>Smart Bag</h1>
-            <h3><Link to='/mycart'>Cart:</Link>{cart.count}</h3>
-            <Link to='/dashboard'>Dashboard</Link>
-            <Link to='/mybag'>My Bag</Link>
-            <Link to='/add-data'>Add Data</Link>
-            <button onClick={startLogout}>Logout</button>
+        <div className="header">
+            <div className="header__container">
+                <div className="header__container__left">
+                    <h1 className="header__title" onClick={() => { history.push('/dashboard') }}>Smart Bag</h1>
+                </div>
+                <div className="header__container__right">
+                    <div className="items">
+                        <a onClick={() => { history.push('/mybag') }}>My Bag</a>
+
+                        <div className="header__cart__container">
+                            <img onClick={() => { history.push('/mycart') }} src="/images/shopping-cart.png"></img>
+                            <p>( {cart.count} )</p>
+                        </div>
+
+                        <a onClick={startLogout}>Logout</a>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

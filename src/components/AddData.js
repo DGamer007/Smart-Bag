@@ -35,6 +35,10 @@ const AddData = ({ auth }) => {
         resetForm()
     }
 
+    useEffect(() => {
+        document.title = 'Smart Bag | Add Data'
+    }, [])
+
     return (
         <div>
             <h2>Add Data</h2>

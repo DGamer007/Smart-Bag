@@ -44,6 +44,7 @@ const Dashboard = () => {
     }
 
     useEffect(() => {
+        document.title = 'Smart Bag | Home';
         (async () => {
             const firstPage = await (await database.ref('/system').orderByKey().limitToFirst(10).once('value')).val()
 
@@ -53,15 +54,25 @@ const Dashboard = () => {
     }, [])
 
     return (
-        <div>
-            <h2>Dashboard</h2>
-            {
-                defaults.map(product => {
-                    return (<Product key={product.id} product={product} isCart={false} />)
-                }
-                )}
-            <button onClick={nextButtonListener} >Next</button>
-            <button onClick={previousButtonListener}>Previous</button>
+        <div className="dashboard">
+            <div className="dashboard__container">
+                <div className="dashboard__title">
+                    <h3>Shop</h3>
+                </div>
+                <div className="dashboard__product__list">
+                    <div className="product__list">
+                        {
+                            defaults.map(product => {
+                                return (<Product key={product.id} product={product} isCart={false} />)
+                            })
+                        }
+                    </div>
+                </div>
+                <div className="dashboard__pagination">
+                    <button onClick={nextButtonListener} >Next</button>
+                    <button onClick={previousButtonListener}>Previous</button>
+                </div>
+            </div>
         </div>
     )
 }

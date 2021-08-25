@@ -11,6 +11,10 @@ const Cart = ({ cart, auth, emptyCart }) => {
     const [products, setProducts] = useState([])
 
     useEffect(() => {
+        document.title = 'Smart Bag | Cart';
+    }, [])
+
+    useEffect(() => {
         setProducts(cart.items)
     }, [cart])
 
@@ -34,19 +38,39 @@ const Cart = ({ cart, auth, emptyCart }) => {
     }
 
     return (
-        <div>
-            {
-                products.length === 0 ? (
-                    <p>Cart is empty! Add some Products first.</p>
-                ) : products.map(product => {
-                    return (
-                        <Product key={product.id} product={product} isCart={true} />
+        <div className="cart">
+            <div className="cart_container">
+                <div className="cart__title">
+                    <h3>Cart</h3>
+                </div>
+                <div className="cart__product__list">
+                    {
+                        products.length === 0 ? (
+                            <div className="cart__no__product">
+                                <p>Cart is empty! Add some Products first.</p>
+                            </div>
+                        ) : (
+                            <div className="product__list">
+                                {
+                                    products.map(product => {
+                                        return (
+                                            <Product key={product.id} product={product} isCart={true} />
+                                        )
+                                    })
+                                }
+                            </div>
+                        )
+                    }
+                </div>
+                {
+                    products.length !== 0 && (
+                        <div className="cart__buy">
+                            <button onClick={buyNowListener}>Buy now</button>
+                        </div>
                     )
-                })
-            }
-            {
-                products.length !== 0 && (<button onClick={buyNowListener}>Buy now</button>)
-            }
+                }
+            </div>
+
         </div>
     )
 }
