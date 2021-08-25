@@ -4,10 +4,15 @@ import { connect } from 'react-redux'
 
 const Bag = ({ auth }) => {
     const [products, setProducts] = useState([])
+    const [signal, setSignal] = useState(true)
 
     useEffect(() => {
         (async () => {
             const res = await fetch(`https://smart-bag-001.herokuapp.com/smart_bag/${auth.uid}`)
+            if (res.status === 204) {
+                setSignal(false)
+                return
+            }
             const data = await res.json()
             setProducts(data)
         })()
@@ -18,9 +23,9 @@ const Bag = ({ auth }) => {
             <h1>Products</h1>
             {
                 // Change product_id label when Smit push next time !
-                products.map((product) => {
-                    return <Product key={product.product_id} product={{ id: product.product_id, ...product }} isCart={false} />
-                })
+                signal ? products.map((product) => {
+                    return <Product key={product.id} product={product} isCart={false} />
+                }) : (<p>There is not enought data in your purchase history.</p>)
             }
         </div>
     )
