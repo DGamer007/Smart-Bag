@@ -16,35 +16,40 @@ const addDataToDatabase = ({ uid, pid, category, name, date, subCategory, amount
 
 const fetchNecessaryDataPythonAPI = async (uid) => {
     return new Promise(async (resolve, reject) => {
-        const rawData = await (await database.ref(`/users/${uid}/history`).once('value')).val()
-        if (!rawData) resolve('')
+        try {
+            const rawData = await (await database.ref(`/users/${uid}/history`).once('value')).val()
+            if (!rawData) resolve('')
 
-        const sortedObject = Object.keys(rawData)
-            .sort((a, b) => {
-                if (moment(a).isAfter(b)) return -1
-                return 1
-            })
-            .reduce((obj, key) => {
-                obj[key] = rawData[key]
-                return obj
-            }, {})
+            const sortedObject = Object.keys(rawData)
+                .sort((a, b) => {
+                    if (moment(a).isAfter(b)) return -1
+                    return 1
+                })
+                .reduce((obj, key) => {
+                    obj[key] = rawData[key]
+                    return obj
+                }, {})
 
 
-        const initDate = Object.keys(sortedObject)[0]
+            const initDate = Object.keys(sortedObject)[0]
 
-        let data = ''
+            let data = ''
 
-        for (let date in sortedObject) {
-            if ((moment(date, 'YYYY-MM-DD').diff(moment(initDate, 'YYYY-MM-DD'), 'month')) * (-1) > 6) break
+            for (let date in sortedObject) {
+                if ((moment(date, 'YYYY-MM-DD').diff(moment(initDate, 'YYYY-MM-DD'), 'month')) * (-1) > 6) break
 
-            for (let product in sortedObject[date]) {
-                const { productName, category = '', subCategory = '', amount = 0 } = sortedObject[date][product]
+                for (let product in sortedObject[date]) {
+                    const { productName, category = '', subCategory = '', amount = 0 } = sortedObject[date][product]
 
-                data += `"${date}","${product}","${productName}","${amount}","${category}","${subCategory}"\n`
+                    data += `"${date}","${product}","${productName}","${amount}","${category}","${subCategory}"\n`
+                }
             }
+
+            resolve(data)
+        } catch (e) {
+            resolve('')
         }
 
-        resolve(data)
     })
 }
 
