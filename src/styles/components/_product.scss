@@ -1,5 +1,6 @@
 .product{
-    width: 30%;
+    width: 25rem;
+    height: 15rem;
     word-wrap: break-word;
     text-align: center;
     background-color: darkgray;
@@ -7,8 +8,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     row-gap: $size-extrasmall;
-    padding-top: $size-small;
-    padding-bottom: $size-small;
+    padding: $size-small;
 }
 
 .product__name{
