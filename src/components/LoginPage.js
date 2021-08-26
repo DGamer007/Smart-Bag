@@ -47,9 +47,9 @@ const LoginPage = ({ startLoginEP, startLoginGA, startSignupEP }) => {
             <div className="login__container">
                 <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                <button type="submit" onClick={loginEPEventListener}>Login</button>
-                <button type="submit" onClick={signupEventListener}>Signup</button>
-                <button onClick={loginGAEventListener}>Login with Google Account</button>
+                <button className="custom__button" type="submit" onClick={loginEPEventListener}>Login</button>
+                <button className="custom__button" type="submit" onClick={signupEventListener}>Signup</button>
+                <button className="custom__button" onClick={loginGAEventListener}>Login with Google Account</button>
             </div>
         </div>
     )

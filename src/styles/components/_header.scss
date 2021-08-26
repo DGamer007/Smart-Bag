@@ -1,13 +1,12 @@
 .header__container{
-    margin: 0 auto;
-    width: 80%;
+    @extend .component-container;
     display: flex;
     flex-direction: row;
-    min-height: 6rem;
+    min-height: $size-extrahigh;
 }
 
 .header__title{
-    font-size: 4rem;
+    font-size: $font-heading;
 }
 
 .header__cart__container{
@@ -37,14 +36,14 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    font-size: 1.5rem;
-    column-gap: 3rem;
-    margin-right: 2rem;
+    font-size: $font-message;
+    column-gap: $size-regular;
+    margin-right: $size-extrasmall;
 }
 
 .header__cart__container img{
-    height: 2rem;
-    width: 2rem;
+    height: $size-extrasmall;
+    width: $size-extrasmall;
 }
 
 img:hover{

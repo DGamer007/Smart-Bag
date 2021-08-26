@@ -6,13 +6,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    row-gap: 2rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    row-gap: $size-extrasmall;
+    padding-top: $size-small;
+    padding-bottom: $size-small;
 }
 
 .product__name{
-    font-size: 1.5rem;
+    font-size: $font-message;
     font-weight: bold;
 }
 

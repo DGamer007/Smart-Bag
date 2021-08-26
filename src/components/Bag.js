@@ -21,9 +21,9 @@ const Bag = ({ auth }) => {
     }, [])
 
     return (
-        <div className="bag">
-            <div className="bag__container">
-                <div className="bag__title">
+        <div className="bag component">
+            <div className="bag__container component-container">
+                <div className="bag__title component-title">
                     <h3>Products</h3>
                 </div>
                 <div className="bag__product__list">
@@ -37,7 +37,7 @@ const Bag = ({ auth }) => {
                                 }
                             </div>
                         ) : (
-                            <div className="bag__no__product">
+                            <div className="no__content">
                                 <p>There is not enought data in your purchase history.</p>
                             </div>
                         )

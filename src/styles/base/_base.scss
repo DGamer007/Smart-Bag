@@ -20,3 +20,38 @@ a{
 button{
     cursor: pointer;
 }
+
+.component{
+    margin-top: $size-regular;
+    margin-bottom: $size-high;
+}
+
+.component-container{
+    width: 80%;
+    margin:0 auto;
+}
+
+.component-title{
+    height: $size-high;
+    text-align: center;
+    font-size: $font-subheading;
+}
+
+.no__content{
+    font-size: $font-message;
+    font-weight: bold;
+    width: 60%;
+    margin: 0 auto;
+    margin-top: $size-large;
+    text-align: center;
+}
+
+.custom__button{
+    border-style: none;
+    border-radius: 0;
+    background-color: black;
+    color: white;
+    height: $size-regular;
+    width: max-content;
+    padding: 0 $size-small;
+}

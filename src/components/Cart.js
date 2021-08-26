@@ -38,15 +38,15 @@ const Cart = ({ cart, auth, emptyCart }) => {
     }
 
     return (
-        <div className="cart">
-            <div className="cart_container">
-                <div className="cart__title">
+        <div className="cart component">
+            <div className="cart_container component-container">
+                <div className="cart__title component-title">
                     <h3>Cart</h3>
                 </div>
                 <div className="cart__product__list">
                     {
                         products.length === 0 ? (
-                            <div className="cart__no__product">
+                            <div className="no__content">
                                 <p>Cart is empty! Add some Products first.</p>
                             </div>
                         ) : (
@@ -65,7 +65,7 @@ const Cart = ({ cart, auth, emptyCart }) => {
                 {
                     products.length !== 0 && (
                         <div className="cart__buy">
-                            <button onClick={buyNowListener}>Buy now</button>
+                            <button className="custom__button" onClick={buyNowListener}>Buy now</button>
                         </div>
                     )
                 }

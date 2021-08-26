@@ -1,39 +1,4 @@
-.cart{
-    margin-top: 3rem;
-    margin-bottom: 5rem;
-}
-
-.cart__title{
-    height: 5rem;
-    text-align: center;
-    font-size: 2rem;
-}
-
-.cart__container{
-    width: 80%;
-    margin: 0 auto;
-}
-
-.cart__no__product{
-    font-size: 1.5rem;
-    font-weight: bold;
-    width: 60%;
-    margin: 0 auto;
-    margin-top: 10rem;
-    text-align: center;
-}
-
 .cart__buy{
-    margin-top: 4rem;
+    margin-top: $size-high;
     text-align: center;
-}
-
-.cart__buy button{
-    border-style: none;
-    border-radius: 0;
-    background-color: black;
-    color: white;
-    height: 3rem;
-    width: max-content;
-    padding: 0 1rem;
 }

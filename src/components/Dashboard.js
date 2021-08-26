@@ -54,9 +54,9 @@ const Dashboard = () => {
     }, [])
 
     return (
-        <div className="dashboard">
-            <div className="dashboard__container">
-                <div className="dashboard__title">
+        <div className="dashboard component">
+            <div className="dashboard__container component-container">
+                <div className="dashboard__title component-title">
                     <h3>Shop</h3>
                 </div>
                 <div className="dashboard__product__list">
@@ -69,8 +69,8 @@ const Dashboard = () => {
                     </div>
                 </div>
                 <div className="dashboard__pagination">
-                    <button onClick={nextButtonListener} >Next</button>
-                    <button onClick={previousButtonListener}>Previous</button>
+                    <button className="custom__button" onClick={previousButtonListener}>Previous</button>
+                    <button className="custom__button" onClick={nextButtonListener}>Next</button>
                 </div>
             </div>
         </div>

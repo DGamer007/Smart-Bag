@@ -6,29 +6,18 @@
     width: max-content;
     height: 100%;
     margin: 0 auto;
-    margin-top: 15rem;     
+    margin-top: $size-larger;     
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;   
     background-color: darkgray;
-    padding: 0 5rem;
+    padding: 0 $size-high;
 }
 
 .login__container input{
     border-style: none;
     border-radius: 0;
-    padding: 0.5rem 1rem;
+    padding: $size-tiny $size-small;
     color: black;
-}
-
-.login__container button{
-    border-style: none;
-    border-radius: 0;
-    background-color: black;
-    color: white;
-    height: 3rem;
-    width: max-content;
-    padding: 0 1rem;
-
 }
