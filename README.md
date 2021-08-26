@@ -26,4 +26,5 @@ you can checkout the production version of this Project [here](https://smart-bag
 #### Contributors:
 
 > [Dhruv Prajapati](https://github.com/DGamer007)
+
 > [Smit Prajapati](https://github.com/smit977)

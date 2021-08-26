@@ -8,10 +8,6 @@ It will start Express Server both locally and in Production (Will work for both 
 
 It will start Express Server with Environment variables ( Will work only for Developer Build of Webpack Bundle )
 
-**```database```**
-
-It will run just one file with Development Environment Variables which is [`/firebase/insertData.js`](/firebase/insertData.js)
-
 **```dev```**
 
 It will start Webpack Dev-server in Development Mode ( No need to build Webpack Bundle )
